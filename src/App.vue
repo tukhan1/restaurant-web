@@ -5,7 +5,7 @@
       <button @click="showModal = true">Оставить отзыв</button>
     </div>
     <div class="form-container">
-      <FeedbackForm v-if="showModal" @formSubmitted="showModal = false" />
+      <FeedbackForm v-if="showModal" @formSubmitted="showModal = false" @closeForm="closeForm" />
     </div>
   </div>
 </template>
@@ -26,6 +26,9 @@ export default {
     };
   },
   methods: {
+    closeForm() {
+      this.showModal = false
+    },
     submitForm() {
       console.log(this.name);  // здесь логика отправки формы
       // обработка данных формы
@@ -36,23 +39,14 @@ export default {
 </script>
 
 <style>
-#app {
-  height: 100vh;
-  /* Задает высоту всего приложения равной высоте видимой области браузера */
+
+body {
   background-image: url('./assets/background.png');
-  /* Путь к вашему фоновому изображению */
   background-size: cover;
-  /* Обеспечивает покрытие всего доступного пространства */
   background-position: center;
-  /* Центрирует изображение */
   background-repeat: no-repeat;
-  /* Предотвращает повторение изображения */
+  background-attachment: fixed; /* Опционально, если хотите чтобы фон не прокручивался */
 }
-
-/* .form-container {
-  position: absolute;
-
-} */
 
 .button-container {
   display: flex;
